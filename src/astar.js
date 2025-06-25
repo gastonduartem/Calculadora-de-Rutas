@@ -107,9 +107,10 @@
                 const clave_vecina = `${fila_vecina},${columna_vecina}`;
                 if (conjunto_nodos_cerrados.has(clave_vecina)) continue;
 
-                
+
             }
         }
         
     }
 })
+//prueba
