@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>THE HUDDLE – Calculadora de Rutas</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <h1>THE HUDDLE – Calculadora de Rutas</h1>
+
+  <div id="controls">
+    <!-- Controles para tamaño del mapa -->
+    <div id="map-size-controls">
+      <label for="inputRowCount">Filas:</label>
+      <input type="number" id="inputRowCount" value="10" min="1" />
+
+      <label for="inputColCount">Columnas:</label>
+      <input type="number" id="inputColCount" value="10" min="1" />
+
+      <button id="buttonGenerateMap">Generar Mapa</button>
+    </div>
+
+    <!-- Controles para selección por clic -->
+    <div id="selection-controls">
+      <button id="buttonSelectStart">Seleccionar Inicio</button>
+      <button id="buttonSelectEnd">Seleccionar Destino</button>
+    </div>
+
+    <!-- Control para calcular ruta -->
+    <div id="route-controls">
+      <button id="buttonFindPath">Calcular Ruta</button>
+    </div>
+  </div>
+
+  <!-- Contenedor donde se montará el mapa -->
+  <div id="mapContainer"></div>
+
+  <script src="src/map.js"></script>
+  <script src="src/astar.js"></script>
+  <script src="src/ui.js"></script>
+</body>
+</html>
