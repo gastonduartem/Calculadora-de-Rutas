@@ -22,7 +22,7 @@
         );
 
         // Devolvemos una copia por las dudas
-        return getmapa_matrixcopy();
+        return copiar_mapa_matriz();
 
     }
 
@@ -56,7 +56,7 @@
     }
 
     // Creamos una copia de la matriz
-    function getmapa_matrixcopy() {
+    function copiar_mapa_matriz() {
         return mapa_matrix.map(row => row.slice());
     }
 
@@ -65,8 +65,7 @@
         inicializar_mapa,
         definir_terreno,
         obtener_tipo_terreno,
-        getmapa_matrixcopy
+        copiar_mapa_matriz
     };
 
 })(window);
-//prueba

@@ -3,25 +3,25 @@
     // Creamos una clase que representa el nodo de busqueda con informacion completa
     class Nodo_a_estrella {
         
-        constructor(indice_fila, indice_columna, costo_acumulado, estimacion_costo, costo_estimado,nodo_anterior) {
-            this.indice_fila = indice_fila;
-            this.indice_columna = indice_columna;
-            this.costo_acumulado = costo_acumulado;
-            this.estimacion_costo = estimacion_costo;
-            this.costo_estimado = costo_estimado;
-            this.nodo_anterior = nodo_anterior;
+        constructor(indice_fila, indice_columna, costo_acumulado, estimacion_costo, nodo_anterior = null) {
+          this.indice_fila      = indice_fila;
+          this.indice_columna   = indice_columna;
+          this.costo_acumulado  = costo_acumulado;                   // g
+          this.estimacion_costo = estimacion_costo;                  // h
+          this.costo_estimado   = costo_acumulado + estimacion_costo; // f = g + h
+          this.nodo_anterior    = nodo_anterior;                     // vínculo al padre
         }
     }
 
-    function distancia_manhattan (fila_a, fila_b, columna_a, columna_b){
-        return Math.abs(fila_a-fila_b) + Math.abs(columna_a+columna_b);
+    function distancia_manhattan (fila_a, columna_a, fila_b, columna_b){
+        return Math.abs(fila_a-fila_b) + Math.abs(columna_a-columna_b);
     }
 
     // Busca la ruta mas corta en una matriz de terreno usando el algoritmo A*
     function buscar_ruta (matriz_de_terreno, coordenadas_inicio, coordenadas_final) {
 
-        const numero_filas = matriz_de_terreno.lenght;
-        const numero_columnas = matriz_de_terreno[0]?.lenght || 0;
+        const numero_filas = matriz_de_terreno.length;
+        const numero_columnas = matriz_de_terreno[0]?.length || 0;
 
         // Verificamos que este dentro del mapa
         function dentro_del_mapa (fila, columna) {
@@ -41,7 +41,7 @@
         const conjunto_nodos_cerrados = new Set();
 
         // Creamos nodo inicial y añadimos a la lista abierta
-        const nodo_inicial = new Nodo_a_estrella (coordenadas_inicio.fila,coordenadas_inicio.columna,0,distancia_manhattan(coordenadas_inicio.fila,coordenadas_inicio.columna,coordenadas_final.fila,coordenadas_final.columna));
+        const nodo_inicial = new Nodo_a_estrella (coordenadas_inicio.fila,coordenadas_inicio.columna,0,distancia_manhattan(coordenadas_inicio.fila,coordenadas_inicio.columna,coordenadas_final.fila,coordenadas_final.columna), null);
 
         lista_nodos_abiertos.push(nodo_inicial);
 
@@ -107,10 +107,29 @@
                 const clave_vecina = `${fila_vecina},${columna_vecina}`;
                 if (conjunto_nodos_cerrados.has(clave_vecina)) continue;
 
+                // Buscamos si ya existe en la lista abierta
+                let nodo_vecino = lista_nodos_abiertos.find(nodo => nodo.indice_fila === fila_vecina && nodo.indice_columna === columna_vecina);
+
+                if (!nodo_vecino) {
+                    // Si no existe, creamos y añadimos
+                    nodo_vecino = new Nodo_a_estrella (fila_vecina, columna_vecina, coste_tentativo, distancia_manhattan(fila_vecina, columna_vecina, coordenadas_final.fila, coordenadas_final.columna), nodo_actual);
+                    lista_nodos_abiertos.push(nodo_vecino);
+                } else if (coste_tentativo < nodo_vecino.costo_acumulado) {
+                    // Si encontramos un camino mas barato, actualizar costes y padre
+                    nodo_vecino.costo_acumulado = coste_tentativo;
+                    nodo_vecino.costo_estimado = coste_tentativo + nodo_vecino.estimacion_costo;
+                    nodo_vecino.nodo_anterior = nodo_actual;
+                }
 
             }
         }
-        
+
+    return [];
+
     }
-})
-//prueba
+
+    window.astar_module = {
+        buscar_ruta
+
+    };
+})(window);
