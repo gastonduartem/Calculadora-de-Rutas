@@ -24,8 +24,8 @@
 
     <!-- Controles para selección por clic -->
     <div id="selection-controls">
-      <button id="buttonSelectStart">Seleccionar Final</button>
-      <button id="buttonSelectEnd">Seleccionar Inicio</button>
+      <button id="buttonSelectStart">Seleccionar Inicio</button>
+      <button id="buttonSelectEnd">Seleccionar Destino</button>
     </div>
 
     <!-- Control para calcular ruta -->
@@ -36,6 +36,26 @@
 
   <!-- Contenedor donde se montará el mapa -->
   <div id="mapContainer"></div>
+
+  <!-- Leyenda de colores -->
+  <div id="legend">
+    <div class="legend-item">
+      <span class="legend-color cell-free"></span>
+      Camino libre
+    </div>
+    <div class="legend-item">
+      <span class="legend-color cell-obstacle"></span>
+      Edificio (obstáculo)
+    </div>
+    <div class="legend-item">
+      <span class="legend-color cell-water"></span>
+      Agua (coste extra)
+    </div>
+    <div class="legend-item">
+      <span class="legend-color cell-blocked"></span>
+      Zona bloqueada (impasable)
+    </div>
+  </div>
 
   <script src="src/map.js"></script>
   <script src="src/astar.js"></script>

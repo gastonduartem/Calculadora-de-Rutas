@@ -83,3 +83,28 @@ button:hover {
 /* Punto de inicio y destino */
 .cell-start    { background-color: #bf616a; /* rojo suave */ }
 .cell-end      { background-color: #a3be8c; /* verde suave */ }
+
+/* Leyenda de colores */
+#legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+  font-size: 0.9rem;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+/* Las siguientes clases reutilizan los mismos colores de las celdas */
+.legend-color.cell-free     { background-color: #ffffff; }
+.legend-color.cell-obstacle { background-color: #554545; }
+.legend-color.cell-water    { background-color: #007acc; }
+.legend-color.cell-blocked  { background-color: #000000; }
