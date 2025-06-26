@@ -57,6 +57,8 @@
 
     // Creamos una copia de la matriz
     function copiar_mapa_matriz() {
+
+        // map recorre las filas con las columnas y devuelve la copia de eso
         return mapa_matrix.map(row => row.slice());
     }
 

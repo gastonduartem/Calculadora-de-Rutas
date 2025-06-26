@@ -82,7 +82,7 @@
                     elemento_celda.classList.add('cell-end');
                 }
 
-                // Guardar sus coordenadas en atributos data-* para el handler de click
+                // Guardar sus coordenadas en atributos data.set para el handler de click
                 elemento_celda.dataset.fila = indice_fila;
                 elemento_celda.dataset.columna = indice_columna;
 
@@ -100,6 +100,7 @@
 
     function manejar_click_en_celda(evento) {
 
+        // parseInt convierte un string a entero, se colova el 10 al final para que sea decimal
         const fila    = parseInt(evento.currentTarget.dataset.fila, 10);
         const columna = parseInt(evento.currentTarget.dataset.columna, 10);
             
@@ -107,7 +108,7 @@
         if (!modo_seleccion_actual) {
           const tipoActual = modulo_mapa.obtener_tipo_terreno(fila, columna);
         
-          // Nuevo tipo = (tipoActual + 1) módulo 4 → 0,1,2,3,0,1…
+          // ciclo tipoActual entre 0 y 3: avanza en 1 y reinicia a 0 al llegar a 4
           const nuevoTipo = (tipoActual + 1) % 4;
         
           modulo_mapa.definir_terreno(fila, columna, nuevoTipo);

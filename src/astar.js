@@ -94,6 +94,8 @@
             for (const {dir_fila, dir_col} of direciones) {
                 const fila_vecina = nodo_actual.indice_fila + dir_fila;
                 const columna_vecina = nodo_actual.indice_columna + dir_col;
+
+                
                 if (!dentro_del_mapa(fila_vecina, columna_vecina)) continue;
 
                 const tipo_terreno_vecino = matriz_de_terreno[fila_vecina][columna_vecina];
