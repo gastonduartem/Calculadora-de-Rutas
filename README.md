@@ -29,13 +29,21 @@
 ---
 
 ## Estructura de archivos
-/
-├─ index.html # Interfaz principal y leyenda
-├─ styles.css # Estilos de la cuadrícula y leyenda
-└─ src/
-├─ map.js # Módulo de generación y manipulación del mapa
-├─ astar.js # Módulo A* para búsqueda de ruta
-└─ ui.js # Lógica de la interfaz de usuario
+
+- **`index.html`**  
+  Interfaz principal y leyenda.
+
+- **`styles.css`**  
+  Estilos de la cuadrícula y leyenda.
+
+- **Directorio `src/`**  
+  - `map.js`  
+    Módulo de generación y manipulación del mapa.  
+  - `astar.js`  
+    Implementación del algoritmo A*.  
+  - `ui.js`  
+    Lógica de la interfaz de usuario.
+
 
 
 ---
